@@ -108,7 +108,6 @@ class ChatReadRetrieveReadApproach(ChatApproach):
         query_messages = build_messages(
             model=self.chatgpt_model,
             system_prompt=rendered_query_prompt.system_content,
-            few_shots=rendered_query_prompt.few_shot_messages,
             past_messages=rendered_query_prompt.past_messages,
             new_user_content=rendered_query_prompt.new_user_content,
             tools=tools,
@@ -166,6 +165,7 @@ class ChatReadRetrieveReadApproach(ChatApproach):
         messages = build_messages(
             model=self.chatgpt_model,
             system_prompt=rendered_answer_prompt.system_content,
+            few_shots=rendered_query_prompt.few_shot_messages,
             past_messages=rendered_answer_prompt.past_messages,
             new_user_content=rendered_answer_prompt.new_user_content,
             max_tokens=self.chatgpt_token_limit - response_token_limit,
